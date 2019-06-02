@@ -1,0 +1,40 @@
+<body background="https://activerain.com/image_store/uploads/agents/realtyresource/files/KENNYMAY2018.png" style="background-size:cover;">
+{% extends 'base.html'%}
+{%load static %}
+{{form.media}}
+
+{% block styles%}
+<link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% endblock %}
+
+{% block content%}
+<body>
+<h1 class="glow">NEIGHBOR-HOOD</h1>
+</body>
+ <section id="photos">
+        
+        <div class="container">
+       
+            <div class="row">
+                 {% for hood in hoods %}
+                 
+                <div class="col-lg-4 col-sm-6 portfolio-item">
+
+                    <img src="{{hood.image.url}}" alt="">
+                     <a href="/details"><h2>View</h2></a>
+
+                   <div class = "box-content">
+                        <h3 class = "name">{{hood.name}}</h3>
+                        
+                   </div>
+                 
+                </div>
+                 {% endfor %} 
+                           
+
+            </div>
+        </div>
+    </section>
+</body>
+{% endblock%}
