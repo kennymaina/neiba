@@ -10,27 +10,27 @@
 
 {% block content%}
 <body>
-<h1 class="glow">NEIGHBOR-HOOD</h1>
+    
+<strong><h1 class="glow" style="font-style: italic;">NEIGHBOR-HOOD</h1></strong>
 </body>
  <section id="photos">
         
         <div class="container">
        
             <div class="row">
-                 {% for hood in hoods %}
-                 
-                <div class="col-lg-4 col-sm-6 portfolio-item">
-
-                    <img src="{{hood.image.url}}" alt="">
-                     <a href="/details"><h2>View</h2></a>
-
-                   <div class = "box-content">
-                        <h3 class = "name">{{hood.name}}</h3>
-                        
-                   </div>
-                 
+                {% for neiba in neiba%}
+                <div class="col-md-4">
+                  <div class="card mb-4  shadow-sm" style="width:20rem;height:23rem;">
+                    <p><h1>{{neiba.neiba_name}}</h1></p>
+                    <img class="card-img-top" width="100%" height="225" src="{{neiba.neiba_photo.url}}" />
+                    <p>{{neiba.description}}</p>
+                    <button class="btn btn-info"> <a href="{{neiba.url}}">{{neiba.neiba_name}}</a></button>
+                    
+                    
+                  </div>
                 </div>
-                 {% endfor %} 
+                </div>
+                {% endfor %}
                            
 
             </div>
