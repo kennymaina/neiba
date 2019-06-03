@@ -24,9 +24,12 @@
 
     <a href="{% url 'home' %}" class="w3-bar-item w3-button">Home</a>
     <hr>
-
-    <!-- <a href="/upload" class="w3-bar-item w3-button">Submit Project</a> -->
+    <a href="{% url 'profile' %}" class="w3-bar-item w3-button">Profile</a>
     <hr>
+    <a href="{% url 'hood' %}" class="w3-bar-item w3-button">hood</a>
+    <hr>
+    
+   
     {% if user.is_authenticated %}
 
 
@@ -45,7 +48,7 @@
 
 </div>
 
-<!-- Page Content -->
+
 <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
 <div>
