@@ -24,3 +24,14 @@ class NeibaForm(forms.ModelForm):
     class Meta:
         model = Neiba
         exclude = ["user"]
+
+class   HoodForm(forms.ModelForm):
+    class Meta:
+        model = Neiba
+        fields = ['name','location','population','image']
+
+class BusinessForm(forms.ModelForm):
+    class Meta:
+        model  = Neiba
+        fields = ['name','location','population']
+        

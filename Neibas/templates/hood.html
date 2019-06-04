@@ -1,128 +1,39 @@
-{% extends 'base.html' %}
-{% load static%}
-
+{% extends 'base.html'%}
+{%load static %}
+{{form.media}}
 {% block content %}
-<div class="w3-display-container w3-animate-opacity ">
-    <img src="https://lh3.googleusercontent.com/y9iprG-q16ycHMnrzreLEy_Bpoojsl5vBNr8kGGghGkCmJa_RVH53E5DCY7vqJyIBk-FTxkYTq37imBfYVaV22SotJ4" alt="hourglass" style="width:100%;min-height:350px;max-height:400px;filter: brightness(40%);
-">
 
-    <div class="w3-display-topmiddle w3-text-white w3-center w3-padding-top" style="margin-top:5%">
-        <strong class="w3-xlarge"><i class="fas fa-map-marker-alt "></i> {{ hood.name }}, </strong>
-        <strong class="w3-xlarge">{{hood.location}}</strong>
-    </div>
-    <div class="w3-display-middle  w3-center ">
+<body background="https://activerain.com/image_store/uploads/agents/realtyresource/files/KENNYMAY2018.png" style="background-size:cover;">
 
-          <strong class="w3-xlarge">Hood-Admin: {{hood.owner}}</strong>
-    </div>
-    
-
-    </div>
-   
-            
-        </table>
-    </div>
-    <br>
-    <div class="w3-row">
-        <div class=" w3-padding w3-center">
-            <a href="/post"><i class="fas fa-pen-square fa-2x w3-center w3-text-pink"></i>
-                <h3 ><strong>check it out</strong></h3></a>
-            <hr>
+  {% block styles%}
+  <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  {% endblock %}
 
 
-        </div>
 
-        <div>
-            <div class="w3-row-padding">
-            {% for post in posts%}
-            <div class="w3-col l6">
+  <strong>
+    <h1 class="glow" style="font-style: italic;">NEIGHBOR-HOOD</h1>
+  </strong>
 
-            <div class="w3-card-2 w3-center " >
+  <section id="photos">
 
-                <header class="w3-container w3-serif ">
-                    <h3>{{post.title}}!!</h3>
-                    <hr>
+    <div class="container">
 
-                </header>
-
-                <div class="w3-container">
-                </div>
-
-                <footer class="w3-container">
-                         <blockquote class="w3-panel w3-leftbar w3-light-grey">
-  <p class="w3-large">
-  <i>                    <p>{{post.description}}</p>
-</i></p>
-  <p> {{user.username}}</p>
-</blockquote>
-                </footer>
+      <div class="row">
 
 
-            </div>
-                </div>
-            {% endfor %}
-                </div>
+        {% for neiba in neibas %}
+        <img src="{{neiba.image.url}}" alt="{{neiba.name}}">
+        <p>{{neiba.location}}</p>
+        <p>{{neiba.name}}</p>
 
 
-        </div>
-        <br>
-        <br>
-        <div class="w3-row">
+        {% endfor %}
 
+      </div>
 
-            <div class="w3-row w3-center">
-                <br>
-                <div class="w3-col l6 m6 s12">
-                    <i class="fas fa-hospital-symbol fa-2x w3-text-pink"></i>
-                    <br>
+  </section>
 
-                    <h3>Health Care Department</h3>
-                    <div class="w3-card-4 w3-white w3-padding w3-margin ">
-                        <header><h4><strong>Contact Information</strong></h4>
-                            <hr>
-                        </header>
-                        <div class="w3-container w3-margin">
-
-                            <p><i class="fas fa-at"></i> {{hood.name}} General Hospital</p>
-                            <hr>
-                            <p><i class="fas fa-map-marker-alt"></i> {{hood.name}} Main Road</p>
-                            <hr>
-                            <p><i class="fas fa-phone"></i>Emergency contact: 999</p>
-                            <hr>
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-                <div class="w3-col l6 m6 s12 ">
-                    <i class="fas fa-shield-alt fa-2x w3-text-pink"></i>
-                    <br>
-                    <h3>Police Department</h3>
-                        <div class="w3-card-4 w3-white w3-padding w3-margin ">
-                        <header><h4><strong>Contact Information</strong></h4>
-                            <hr>
-                        </header>
-                        <div class="w3-container w3-margin">
-
-                            <p><i class="fas fa-at"></i> {{hood.name}} Police Station</p>
-                            <hr>
-                            <p><i class="fas fa-map-marker-alt"></i> {{hood.name}} Main Road </p>
-                            <hr>
-                            <p><i class="fas fa-phone"></i> Emergency contact: 911</p>
-                            <hr>
-                        </div>
-
-
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
-
-
-    </div>
-</div>
+</body>
 {% endblock %}

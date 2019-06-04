@@ -5,9 +5,10 @@ from django.contrib.auth.models import User
 
 
 class Neiba(models.Model):
-    first_name = models.CharField(max_length =30)
-    last_name = models.CharField(max_length =30)
-    email = models.EmailField()
+    name = models.CharField(max_length =30)
+    location=models.CharField(max_length =30)
+    population = models.IntegerField()
+    image = models.ImageField(upload_to = 'images/')
 
 
 class Profile(models.Model):

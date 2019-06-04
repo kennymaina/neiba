@@ -8,8 +8,7 @@ from django.views import generic
 # Create your views here.
 
 def home(request):
-    neibas = Neiba.objects.all()
-    
+    neibas = Neiba.objects.all()    
     return render(request,"home.html",locals())
 
 @login_required(login_url='/accounts/login/')
@@ -40,16 +39,63 @@ def profile(request):
 
 
 
-def hood(request):
+# def hood(request):
+#     current_user = request.user
+#     if request.method == "POST":
+#         form = NeibaForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             neiba = form.save(commit=False)
+#             neiba.user = current_user
+#             neiba.save()
+#         return redirect("home")
+
+#     else:
+#         form = NeibaForm()
+#     return render(request, "hood.html",locals())
+
+@login_required(login_url='/accounts/login/')
+def upload_hood(request):
     current_user = request.user
-    if request.method == "POST":
+    if request.method == 'POST':
         form = NeibaForm(request.POST, request.FILES)
         if form.is_valid():
-            neiba = form.save(commit=False)
-            neiba.user = current_user
-            neiba.save()
-        return redirect("home")
-
+            upload = form.save(commit=False)
+            upload.owner= current_user
+            upload.save()
+            return redirect('hood')
     else:
         form = NeibaForm()
-    return render(request, "hood.html",locals())
+    return render(request, 'upload_hood.html', locals())
+
+def hoodie(request):    
+    neibas = Neiba.objects.all()
+    return render(request,"hood.html",{"neibas":neibas})
+
+def search(request):
+    location = Location.objects.all()
+    category = Category.objects.all()
+    if 'Category' in request.GET and request.GET["Category"]:
+        category = request.GET.get("Category")
+        searched_business = Business.search_by_category(category)
+        message = f"{category}"
+
+        return render(request,'search.html', {"message":message,"Category":searched_business})
+
+    else:
+        message = "You haven't searched for anything"
+        return render(request,'search.html',{"message":message})
+
+@login_required(login_url='/accounts/login')
+def upload_business(request):
+    neiba = Neiba.objects.get(id=request.user.profile.neiba.id)
+    if request.method == 'POST':
+        businessform = BusinessForm(request.POST, request.FILES)
+        if businessform.is_valid():
+            upload = businessform.save(commit=False)
+            upload.user=request.user
+            upload.neiba=request.user.profile.neiba
+            upload.save()
+        return redirect('hood')
+    else:
+        businessform = BusinessForm()
+    return render(request,'business.html',locals())
